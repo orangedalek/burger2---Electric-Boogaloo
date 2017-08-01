@@ -23,7 +23,7 @@ module.exports = function(app){
 
 	 //route to post a new burger
 
-	app.post("/add", function(req, res) {
+	app.post("/", function(req, res) {
 
 	  db.Burger.create({
 	  burger_name: req.body.burger_name,
@@ -35,7 +35,7 @@ module.exports = function(app){
 	});
 
 	//route to devour a burger
-	app.put("/devoured/:id", function(req, res) {
+	app.put("/:id", function(req, res) {
   
     db.Burger.update({
     	devoured: true
@@ -45,7 +45,7 @@ module.exports = function(app){
         id: req.body.id
       }
     })
-    .then(function() {
+    .then(function(burgers) {
       res.redirect("/");
   });
 });
